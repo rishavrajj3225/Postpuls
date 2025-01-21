@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block title %}
+    firstapp
+{% endblock %}
+
+{% block content %}
+    <h2>{%if form.instance.pk %}Edit blog {%else%} Create Blog {%endif%}
+    <form method='POST' enctype="multipart/form-data" > 
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
+        <a href="{% url 'allBlogs' %}"> Back to List</a>
+    </form>
+    </h2>
+{% endblock %}

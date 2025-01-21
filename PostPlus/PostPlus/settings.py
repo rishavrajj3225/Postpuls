@@ -135,7 +135,9 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
-
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/blogs/'
+LOGOUT_REDIRECT_URL = '/blogs/'
 # for images
 MEDIA_URL='/media/'
 MEDIA_ROOT= os.path.join(BASE_DIR, 'media')

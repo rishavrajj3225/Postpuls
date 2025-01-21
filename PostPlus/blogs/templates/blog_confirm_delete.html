@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block title %}
+    Delete-Confirmation
+{% endblock %}
+
+{% block content %}
+<h1 class="py-5" >Confirm to Delete</h1>
+<form method="post">
+    {% csrf_token %}
+    <a href="{% url 'allBlogs' %}" class=" inline-flex items-center px-7 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Cancel</a>
+    <button type="submit" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-500 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-blue-800">Delete</button>
+</form>
+
+
+{% endblock %}
+
+
+
+

@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block title %}
+    firstapp
+{% endblock %}
+
+{% block content %}
+<form method="post">
+    {%csrf_token%}
+    {{form.as_p}}
+    <button type="submit">Register</button>
+</form>
+<p>Already have a account <a href="{%url 'login'%}">Login</a> </p>
+{% endblock %}
