@@ -1,4 +1,6 @@
-{% extends "layout.html" %} {% block title %} AllBlogs {% endblock %} 
+{% extends "layout.html" %} 
+{% load static %}
+{% block title %} AllBlogs {% endblock %} 
 {% block content %}
 <div class="flex justify-end">
   <a href="{% url 'blog_create' %}">
@@ -17,11 +19,20 @@
   <div
   class="max-w-sm flex flex-col justify-between bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
 >
-  <img
-    src="{{ blog.image.url }}"
-    alt="{{ blog.title }}"
-    class="w-full h-auto max-h-60 sm:max-h-96 dark:bg-gray-500 object-cover"
-  />
+  {% if blog.image %}
+      <img
+        src="{{ blog.image.url }}"
+        alt="{{ blog.title }}"
+        class="w-full h-auto max-h-60 sm:max-h-96 dark:bg-gray-500 object-cover"
+      />
+    {% else %}
+      <img
+  src="{% static 'noimage.png' %}"
+  alt="No Image Available"
+  style="max-width:100%; height: auto; max-height: 240px; object-fit: cover;"
+  class="dark:bg-gray-500"
+/>
+    {% endif %}
   <div class="p-5">
     <a href="{% url 'blog_detail' blog.id %}">
     <h5

@@ -10,4 +10,7 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('login/', views.login_view, name='login'),
     path('user_blog/', views.user_blog_list, name='user_blog'),
+    path('user_edit/', views.edit_profile, name='edit_profile'),
+    path('profile/', views.profile, name='users-profile'),
+    path('<int:blog_id>/analyzer/', views.aiAnalyzer, name='aiAnalyzer'),
 ]

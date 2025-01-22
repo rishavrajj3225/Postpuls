@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block title %}
+    AI Response
+{% endblock %}
+{% block content %}
+<div class="max-w-4xl mx-auto mt-10 bg-white p-6 rounded-lg shadow-md dark:bg-gray-800">
+    <h2 class="text-2xl font-bold text-center text-gray-800 dark:text-gray-100 mb-6">AI Response</h2>
+    <p class="text-lg text-gray-800 dark:text-gray-200"> {{ answer }}</p>
+    <div class="mt-6 text-center">
+        <a href="{% url 'blog_detail' blog_id=blog_id %}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
+            Back to Blog
+        </a>
+    </div>
+</div>
+{% endblock %}

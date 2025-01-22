@@ -1,15 +1,60 @@
 {% extends "layout.html" %}
 {% block title %}
-    firstapp
+    {% if form.instance.pk %} Edit Blog {% else %} Create Blog {% endif %}
 {% endblock %}
 
 {% block content %}
-    <h2>{%if form.instance.pk %}Edit blog {%else%} Create Blog {%endif%}
-    <form method='POST' enctype="multipart/form-data" > 
-        {% csrf_token %}
-        {{form.as_p}}
-        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
-        <a href="{% url 'allBlogs' %}"> Back to List</a>
-    </form>
+<div class="max-w-4xl mx-auto mt-10 bg-white p-6 rounded-lg shadow-md dark:bg-gray-800">
+    <h2 class="text-2xl font-bold text-center text-gray-800 dark:text-gray-100 mb-6">
+        {% if form.instance.pk %} Edit Blog {% else %} Create Blog {% endif %}
     </h2>
+    <form method="POST" enctype="multipart/form-data" class="space-y-6">
+        {% csrf_token %}
+        
+        <div>
+            <label for="id_title" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Title</label>
+            <input type="text" name="title" id="id_title" 
+                   class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200" 
+                   value="{{ form.title.value|default_if_none:'' }}" required>
+        </div>
+        
+        <div>
+            <label for="id_summary" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Summary</label>
+            <textarea name="summary" id="id_summary" rows="2"
+                      class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200">{{ form.summary.value|default_if_none:'' }}</textarea>
+        </div>
+        
+        <div>
+            <label for="id_content" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Content</label>
+            <textarea name="content" id="id_content" rows="4"
+                      class="w-full px-2 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200">{{ form.content.value|default_if_none:'' }}</textarea>
+        </div>
+        
+        <div>
+            <label for="id_image" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Image</label>
+            <input type="file" name="image" id="id_image" 
+                   class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200">
+        </div>
+        
+        <div>
+            <label for="id_tags" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Tags</label>
+            <select name="tags" id="id_tags" 
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200">
+                <option value="" disabled {% if not form.tags.value %}selected{% endif %}>Select a Tag</option>
+                {% for value, label in form.tags.field.choices %}
+                    <option value="{{ value }}" {% if value == form.tags.value %}selected{% endif %}>{{ label }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="flex justify-end space-x-4">
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                Submit
+            </button>
+            <a href="{% url 'allBlogs' %}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
+                Back to List
+            </a>
+        </div>
+    </form>
+</div>
 {% endblock %}

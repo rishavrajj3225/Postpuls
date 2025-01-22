@@ -25,4 +25,22 @@ class UserRegistrationForm(UserCreationForm):
             'password2': forms.PasswordInput(attrs={'class':'form-control'}),
         }
         #jab v hum builtin form use karte hain toh hume uske fields ko define karna padta hai tuple me and agar khud se banate hai to array pass krna hota hai
-    
+
+
+class BlogForm(forms.ModelForm):
+    class Meta:
+        model = blog
+        fields = ['title', 'summary', 'content', 'image', 'tags']
+
+
+
+class editUserProfile(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'email'] 
+
+        widgets = {
+            'first_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'last_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control'}),
+        }

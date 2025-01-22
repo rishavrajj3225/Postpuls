@@ -1,10 +1,41 @@
-{% extends "layout.html" %} {% block title %} User_details {% endblock %} 
-{% block content %}
-<div>
-  <p><strong>Username:</strong> {{ user.username }}</p>
-  <p><strong>Email:</strong> {{ user.email }}</p>
-  <p><strong>First Name:</strong> {{ user.first_name }}</p>
-  <p><strong>Last Name:</strong> {{ user.last_name }}</p>
-</div>
+{% extends "layout.html" %}
+{% block title %}
+    User Details
+{% endblock %}
 
+{% block content %}
+<div class="max-w-4xl mx-auto mt-10 bg-white p-8 rounded-lg shadow-md dark:bg-gray-800">
+    <h2 class="text-3xl font-bold text-center text-gray-800 dark:text-gray-100 mb-6">Your Profile</h2>
+
+    <div class="space-y-6">
+        <!-- User Information -->
+        <div class=" p-6 rounded-lg shadow-sm">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                    <p class="text-sm font-medium text-gray-600 dark:text-gray-300">Username:</p>
+                    <p class="text-lg font-semibold text-gray-800 dark:text-gray-100">{{ user.username }}</p>
+                </div>
+                <div>
+                    <p class="text-sm font-medium text-gray-600 dark:text-gray-300">Email:</p>
+                    <p class="text-lg font-semibold text-gray-800 dark:text-gray-100">{{ user.email }}</p>
+                </div>
+                <div>
+                    <p class="text-sm font-medium text-gray-600 dark:text-gray-300">First Name:</p>
+                    <p class="text-lg font-semibold text-gray-800 dark:text-gray-100">{{ user.first_name }}</p>
+                </div>
+                <div>
+                    <p class="text-sm font-medium text-gray-600 dark:text-gray-300">Last Name:</p>
+                    <p class="text-lg font-semibold text-gray-800 dark:text-gray-100">{{ user.last_name }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edit Profile Button -->
+        <div class="text-center">
+            <a href="/blogs/user_edit/" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                Edit Profile
+            </a>
+        </div>
+    </div>
+</div>
 {% endblock %}
