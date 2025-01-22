@@ -72,6 +72,13 @@
     {%endif%}
   </div>
 </div>
-  {% endfor %}
+{%empty%}
+<div class=" ">
+        No Blogs Found  -  <a href="{% url 'blog_create' %}" class="text-blue-600" >Create your own blog now</a>
+</div>
+{% endfor %}
 </div>
 {% endblock %}
+
+
+

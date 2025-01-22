@@ -1,5 +1,5 @@
-{% load static tailwind_tags %} {% load static %}
-{% comment %} <img src="{% static 'noimage.jpg' %}" alt="No Image" /> {% endcomment %}
+{% load static tailwind_tags %} {% load static %} {% comment %}
+<img src="{% static 'noimage.jpg' %}" alt="No Image" /> {% endcomment %}
 <!DOCTYPE html>
 <html lang="en" class="dark">
   <head>
@@ -16,10 +16,7 @@
       <div
         class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
       >
-        <a
-          href="/"
-          class="flex items-center space-x-3 rtl:space-x-reverse"
-        >
+        <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
           <img
             src="https://flowbite.com/docs/images/logo.svg"
             class="h-8"
@@ -33,30 +30,30 @@
 
         <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
           {%if user.is_authenticated %}
-          <form method='post' action="{% url 'logout' %}">
+          <form method="post" action="{% url 'logout' %}">
             {% csrf_token %}
 
             <button
-            type="submit"
-            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          >
-          logout
-          </button>
-        </form>
+              type="submit"
+              class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            >
+              logout
+            </button>
+          </form>
           {% else %}
 
-            <button
+          <button
             type="button"
             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mr-2"
-            >
+          >
             <a href="{%url 'login'%}">login</a>
-            </button>
-            <button
+          </button>
+          <button
             type="button"
             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            >
+          >
             <a href="{%url 'register'%}">Register</a>
-            </button>
+          </button>
           {% endif %}
           <button
             data-collapse-toggle="navbar-sticky"
@@ -93,22 +90,22 @@
             <li>
               <a
                 href="/blogs"
-                class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
+                class="block py-2 px-3 rounded md:p-0 {% if request.path == '/blogs/' %} text-white bg-blue-700 md:bg-transparent md:text-blue-700 {% else %} text-gray-900 hover:bg-gray-100 md:hover:text-blue-700 dark:text-white dark:hover:bg-gray-700 {% endif %}"
                 aria-current="page"
                 >AllBlogs</a
               >
             </li>
             <li>
               <a
-                href="#"
-                class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                href="/blogs/user_blog/"
+                class="block py-2 px-3 rounded md:p-0 {% if request.path == '/blogs/user_blog/' %} text-white bg-blue-700 md:bg-transparent md:text-blue-700 {% else %} text-gray-900 hover:bg-gray-100 md:hover:text-blue-700 dark:text-white dark:hover:bg-gray-700 {% endif %}"
                 >MyBlogs</a
               >
             </li>
             <li>
               <a
-                href="#"
-                class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                href="/user_account/"
+                class="block py-2 px-3 rounded md:p-0 {% if request.path == '/account/' %} text-white bg-blue-700 md:bg-transparent md:text-blue-700 {% else %} text-gray-900 hover:bg-gray-100 md:hover:text-blue-700 dark:text-white dark:hover:bg-gray-700 {% endif %}"
                 >Account</a
               >
             </li>
@@ -117,9 +114,7 @@
       </div>
     </nav>
     <div class="dark:bg-gray-900 dark:text-gray-100 p-4 mx-6">
-      {% block content %}
-      this is content 
-      {% endblock %}
+      {% block content %} Page is not loaded yet {% endblock %}
     </div>
   </body>
 </html>
