@@ -13,6 +13,11 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import os
 
+from dotenv import load_dotenv
+import cloudinary_storage
+
+load_dotenv()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -21,10 +26,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-23%eqxwq+m*(z95l7pkl5z8(g6@)n$@7gcjw%zrq=&6kp=(tcv'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG')=='True'
 
 ALLOWED_HOSTS = []
 
@@ -42,7 +47,8 @@ INSTALLED_APPS = [
     'tailwind',
     'theme',
     'django_browser_reload',
-
+    'cloudinary',
+    'cloudinary_storage',
 ]
 
 TAILWIND_APP_NAME='theme'
@@ -114,6 +120,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
+
+
 NPM_BIN_PATH = '/usr/local/bin/npm'
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
@@ -127,6 +136,14 @@ USE_I18N = True
 USE_TZ = True
 
 
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.environ.get('your_cloud_name'),
+    'API_KEY': os.environ.get('your_api_key'),
+    'API_SECRET': os.environ.get('your_api_secret')
+}
+
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
@@ -136,11 +153,14 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/blogs/'
 LOGOUT_REDIRECT_URL = '/blogs/'
+
 # for images
 MEDIA_URL='/media/'
-MEDIA_ROOT= os.path.join(BASE_DIR, 'media')
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+# MEDIA_ROOT= os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+

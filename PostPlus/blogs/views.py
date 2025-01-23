@@ -6,7 +6,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login as auth_login
 from django.contrib.auth.forms import AuthenticationForm
 import google.generativeai as genai
-genai.configure(api_key="AIzaSyBOwsjRJYsffY0abpKshE1HdbU9J9SnYss ")
+import os
+genai.configure(api_key=os.environ.get('API_KEY'))
 def home(request):
     return render(request, 'index.html')
 
