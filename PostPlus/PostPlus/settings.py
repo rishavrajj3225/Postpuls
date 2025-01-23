@@ -31,7 +31,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG')=='True'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
 
 
 # Application definition
@@ -49,7 +49,11 @@ INSTALLED_APPS = [
     'django_browser_reload',
     'cloudinary',
     'cloudinary_storage',
+    'example',
 ]
+
+# api/settings.py
+WSGI_APPLICATION = 'api.wsgi.app'
 
 TAILWIND_APP_NAME='theme'
 INTERNAL_IPS = ['127.0.0.1']
